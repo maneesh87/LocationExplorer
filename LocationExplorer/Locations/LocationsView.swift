@@ -14,19 +14,32 @@ struct LocationsView: View, LocationsViewProtocol {
         VStack {
             switch viewState.state {
             case .loading:
-                ProgressView("Loading...")
+                ProgressView("Loading Locations")
+                    .tint(.appColor(.primaryBrand))
+                    .foregroundColor(Color.appColor(.primaryForeground))
+                    .font(.appFont(.headline))
+                
             case .loaded(let locations):
+                Text("Homework Locations")
+                    .font(.appFont(.headline))
+                    .foregroundColor(.appColor(.primaryBrand))
+                
                 List(locations, id: \.self) { location in
-                    VStack(alignment: .leading) {
-                        Text(location.name ?? "Unknown")
-                            .font(.headline)
-                        Text("Lat: \(location.lat), Long: \(location.long)")
-                            .font(.subheadline)
+                    HStack {
+                        VStack(alignment: .leading, spacing: CGFloat.spacing(.small)) {
+                            Text(location.name ?? "Unknown")
+                                .font(.appFont(.headlineBold))
+                            Text("Lat: \(location.lat), Long: \(location.long)")
+                                .font(.appFont(.subheadline))
+                        }
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                            .foregroundColor(.appColor(.primaryBrand))
                     }
                 }
             case .error(let errorMessage):
                 Text("Error: \(errorMessage)")
-                    .foregroundColor(.red)
+                    .foregroundColor(.appColor(.textError))
             }
         }
         .onAppear {

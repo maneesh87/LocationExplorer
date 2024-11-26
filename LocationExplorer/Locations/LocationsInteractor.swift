@@ -15,7 +15,7 @@ class LocationsInteractor: LocationsInteractorProtocol {
     func loadLocations() {
         Task {
             do {
-                // await Task.sleep(2_000_000_000)
+                 await Task.sleep(2_000_000_000)
                 try await fetchLocations()
             } catch {
                 await presenter?.presentError(error)
