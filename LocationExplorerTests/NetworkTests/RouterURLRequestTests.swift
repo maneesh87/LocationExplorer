@@ -36,6 +36,7 @@ class RouterURLRequestTests: XCTestCase {
         XCTAssertEqual(urlRequest.url?.absoluteString, "https://example.com/test?key1=value1")
         XCTAssertEqual(urlRequest.httpMethod, "GET")
         XCTAssertEqual(urlRequest.httpBody, bodyData)
+        XCTAssertEqual(urlRequest.allHTTPHeaderFields?["Content-Type"], "application/json")
         XCTAssertEqual(urlRequest.allHTTPHeaderFields?["Header1"], "Value1")
         XCTAssertEqual(urlRequest.allHTTPHeaderFields?["Header2"], "Value2")
     }

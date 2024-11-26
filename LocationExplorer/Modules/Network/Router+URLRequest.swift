@@ -26,10 +26,13 @@ extension Router {
         
         urlRequest.httpMethod = self.method.rawValue
         urlRequest.httpBody = self.body
+                
+        urlRequest.addValue(
+            contentType,
+            forHTTPHeaderField: "Content-Type"
+        )
         
-        let requestHeaders = self.headers
-        
-        if let requestHeaders = self.headers/*, !requestHeaders.isEmpty*/ {
+        if let requestHeaders = self.headers, !requestHeaders.isEmpty {
             for requestHeader in requestHeaders.enumerated() {
                 urlRequest.setValue("\(requestHeader.element.value)", forHTTPHeaderField: requestHeader.element.key)
             }
