@@ -4,15 +4,7 @@ import XCTest
 
 class MockDispatcher: Dispatcher {
     func execute(backendType: BackendType, route: any Router) async throws -> Data {
-        guard let fileURL = Bundle(for: type(of: self)).url(forResource: backendType.baseURLString, withExtension: "json") else {
-            throw MockError.fileNotFound
-        }
-
-        do {
-            return try MockDataLoader().getData(fromJSON: backendType.baseURLString)
-        } catch {
-            throw MockError.dataReadingFailed
-        }
+        return try MockDataLoader().getData(fromJSON: backendType.baseURLString)
     }
 }
 
@@ -40,5 +32,4 @@ class APIManagerTests: XCTestCase {
             XCTAssertTrue(error as? MockError == MockError.fileNotFound)
         }
     }
-
 }
