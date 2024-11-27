@@ -36,6 +36,9 @@ struct LocationsView: View, LocationsViewProtocol {
                         Image(systemName: "chevron.right")
                             .foregroundColor(.appColor(.primaryBrand))
                     }
+                    .onTapGesture {
+                        interactor?.didSelectLocation(location)
+                    }
                 }
             case .error(let errorMessage):
                 Text("Error: \(errorMessage)")

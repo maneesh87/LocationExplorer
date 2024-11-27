@@ -2,6 +2,7 @@ import Foundation
 
 protocol LocationsInteractorProtocol {
     func loadLocations()
+    func didSelectLocation(_ location: Location)
 }
 
 class LocationsInteractor: LocationsInteractorProtocol {
@@ -26,5 +27,9 @@ class LocationsInteractor: LocationsInteractorProtocol {
     private func fetchLocations() async throws {
         let locationResponse: Locations = try await apiManager.perform(route: LocationsAPIRouter.getLocations)
         await presenter?.presentLocations(locationResponse.locations)
+    }
+    
+    func didSelectLocation(_ location: Location) {
+        presenter?.displayLocationDetails(location)
     }
 }
