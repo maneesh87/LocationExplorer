@@ -9,6 +9,7 @@ struct LocationsView: View, LocationsViewProtocol {
     @ObservedObject private var viewState = LocationsViewState()
     
     var interactor: LocationsInteractorProtocol?
+    @State private var isPopupPresented: Bool = false
     
     var body: some View {
         VStack {
@@ -44,10 +45,29 @@ struct LocationsView: View, LocationsViewProtocol {
                 Text("Error: \(errorMessage)")
                     .foregroundColor(.appColor(.textError))
             }
+            
+            Button(action: {
+                isPopupPresented = true
+            }) {
+                Text("Enter Location")
+                    .foregroundColor(.blue)
+            }
         }
         .onAppear {
             viewState.state = .loading
             interactor?.loadLocations()
+        }
+        .sheet(isPresented: $isPopupPresented) {
+            let presenter = customLocationPresenter()
+            let customLocationInteractor = CustomLocationInteractor()
+            let view = CustomLocationInputView(
+                interactor: customLocationInteractor,
+                isPresented: $isPopupPresented
+            )
+            customLocationInteractor.presenter = presenter
+            presenter.view = view
+            return view
+                        
         }
     }
     

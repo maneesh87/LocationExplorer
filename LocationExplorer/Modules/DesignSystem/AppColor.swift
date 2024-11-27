@@ -5,7 +5,7 @@ public enum AppColor: String {
     case secondaryBackground = "secondaryBackground"
     case primaryBrand = "primaryBrand"
     case primaryForeground = "primaryForeground"
-    case textError = "textRrror"
+    case textError = "textError"
 }
 
 public extension Color {
