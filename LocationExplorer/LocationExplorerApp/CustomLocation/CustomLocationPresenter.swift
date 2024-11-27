@@ -8,11 +8,13 @@ protocol CustomLocationPresenterProtocol {
     func openWikipedia(for latitude: Double, longitude: Double)
 }
 
-class customLocationPresenter: CustomLocationPresenterProtocol {
+class CustomLocationPresenter: CustomLocationPresenterProtocol {
     var view: CustomLocationViewProtocol?
     
     func displayRandomLocation(coordinates: CLLocationCoordinate2D) {
-        view?.displayCoordinates(latitude: "\(coordinates.latitude)", longitude: "\(coordinates.longitude)")
+        let latitude = String(coordinates.latitude)
+        let longitude = String(coordinates.longitude)
+        view?.displayCoordinates(latitude: latitude, longitude: longitude)
     }
     
     func displayError(_ error: Error) {
@@ -20,11 +22,8 @@ class customLocationPresenter: CustomLocationPresenterProtocol {
     }
     
     func openWikipedia(for latitude: Double, longitude: Double) {
-        let urlString = "wikipedia://abnPlaces?WMFLat=\(latitude)&WMFLong=\(longitude)"
-        if let url = URL(string: urlString), UIApplication.shared.canOpenURL(url) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        }
+        WikipediaAppUtility.openWikipedia(for: latitude, longitude: longitude)
     }
-
+    
 }
 

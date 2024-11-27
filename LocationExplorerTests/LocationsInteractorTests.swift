@@ -19,6 +19,7 @@ class MockAPIManager: APIManagerProtocol {
 class MockLocationsPresenter: LocationsPresenterProtocol {
     var presentedLocations: [Location]?
     var presentedError: Error?
+    var selectedLocation: Location?
     
     func presentLocations(_ locations: [Location]) async {
         presentedLocations = locations
@@ -26,6 +27,10 @@ class MockLocationsPresenter: LocationsPresenterProtocol {
     
     func presentError(_ error: Error) async {
         presentedError = error
+    }
+    
+    func displayLocationDetails(_ location: LocationExplorer.Location) {
+        selectedLocation = location
     }
 }
 
@@ -75,6 +80,13 @@ final class LocationsInteractorTests: XCTestCase {
         
         XCTAssertNotNil(mockPresenter.presentedError)
         XCTAssertNil(mockPresenter.presentedLocations)
+    }
+    
+    func testDidSelectLocation() {
+        let testLocation = Location(name: "Test Location", lat: 0.0, long: 0.0)
+        interactor.didSelectLocation(testLocation)
+        
+        XCTAssertEqual(mockPresenter.selectedLocation, testLocation)
     }
 }
 

@@ -21,13 +21,10 @@ class LocationsPresenter: LocationsPresenterProtocol {
     }
     
     func displayLocationDetails(_ location: Location) {
-        openWikipedia(for: location.name, latitude: location.lat, longitude: location.long)
+        openWikipedia(latitude: location.lat, longitude: location.long)
     }
     
-    private func openWikipedia(for locationName: String?, latitude: Double, longitude: Double) {
-        let urlString = "wikipedia://abnPlaces?WMFLat=\(latitude)&WMFLong=\(longitude)"
-        if let url = URL(string: urlString), UIApplication.shared.canOpenURL(url) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        }
+    private func openWikipedia(latitude: Double, longitude: Double) {
+        WikipediaAppUtility.openWikipedia(for: latitude, longitude: longitude)
     }
 }

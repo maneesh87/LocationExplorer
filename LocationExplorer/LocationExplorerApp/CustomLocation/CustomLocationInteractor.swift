@@ -2,14 +2,14 @@ import Foundation
 import CoreLocation
 
 protocol CustomLocationInteractorProtocol {
-    func getCustomLocation()
+    func getRandomLocation()
     func submitCoordinates(lat: String, long: String)
 }
 
 class CustomLocationInteractor: CustomLocationInteractorProtocol {
     var presenter: CustomLocationPresenterProtocol?
     
-    func getCustomLocation() {
+    func getRandomLocation() {
         // Latitude range for Central Europe
         let randomLatitude = Double.random(in: 47.0...55.0)
         // Longitude range for Central Europe
@@ -29,17 +29,3 @@ class CustomLocationInteractor: CustomLocationInteractorProtocol {
     }
     
 }
-
-enum ValidationError: Error, Equatable {
-    case invalidCoordinates
-}
-
-extension ValidationError: LocalizedError {
-    public var errorDescription: String? {
-        switch self {
-        case .invalidCoordinates:
-            return "Invalid coordinates"
-        }
-    }
-}
-

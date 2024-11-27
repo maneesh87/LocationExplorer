@@ -6,9 +6,9 @@ protocol LocationsViewProtocol {
 }
 
 struct LocationsView: View, LocationsViewProtocol {
-    @ObservedObject private var viewState = LocationsViewState()
-    
     var interactor: LocationsInteractorProtocol?
+    
+    @ObservedObject private var viewState = LocationsViewState()
     @State private var isPopupPresented: Bool = false
     
     var body: some View {
@@ -34,7 +34,7 @@ struct LocationsView: View, LocationsViewProtocol {
                                 .font(.appFont(.subheadline))
                         }
                         Spacer()
-                        Image(systemName: "chevron.right")
+                        Image.appIcon(.chevronRight)
                             .foregroundColor(.appColor(.primaryBrand))
                     }
                     .onTapGesture {
@@ -50,7 +50,8 @@ struct LocationsView: View, LocationsViewProtocol {
                 isPopupPresented = true
             }) {
                 Text("Enter Location")
-                    .foregroundColor(.blue)
+                    .foregroundColor(.appColor(.primaryForeground))
+                    .padding()
             }
         }
         .onAppear {
@@ -58,16 +59,7 @@ struct LocationsView: View, LocationsViewProtocol {
             interactor?.loadLocations()
         }
         .sheet(isPresented: $isPopupPresented) {
-            let presenter = customLocationPresenter()
-            let customLocationInteractor = CustomLocationInteractor()
-            let view = CustomLocationInputView(
-                interactor: customLocationInteractor,
-                isPresented: $isPopupPresented
-            )
-            customLocationInteractor.presenter = presenter
-            presenter.view = view
-            return view
-                        
+            CustomLocationFactory.createHomeworkView()
         }
     }
     

@@ -31,25 +31,19 @@ final class LocationsPresenterTests: XCTestCase {
     }
     
     func testPresentLocations() async {
-        // Given
         let expectedLocations = [Location(name: "Test Location", lat: 0.0, long: 0.0)]
                 
-        // When
         await presenter.presentLocations(expectedLocations)
                 
-        // Then
         XCTAssertEqual(mockView.displayedLocations, expectedLocations)
         XCTAssertNil(mockView.displayedError)
     }
     
     func testPresentError() async {
-        // Given
         let expectedError = NSError(domain: "TestError", code: 1, userInfo: nil)
                 
-        // When
         await presenter.presentError(expectedError)
                 
-        // Then
         XCTAssertEqual(mockView.displayedError as NSError?, expectedError)
         XCTAssertNil(mockView.displayedLocations)
     }
