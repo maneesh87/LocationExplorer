@@ -2,7 +2,7 @@ import Foundation
 import SwiftUI
 
 struct CustomLocationFactory {
-    static func createHomeworkView() -> some View {
+    static func createLocationView() -> some View {
         let interactor = CustomLocationInteractor()
         let presenter = CustomLocationPresenter()
         

@@ -36,13 +36,11 @@ struct LocationsView: View, LocationsViewProtocol {
                             Text("Lat: \(location.lat), Long: \(location.long)")
                                 .font(.appFont(.subheadline))
                                 .accessibility(hidden: true)
-
                         }
                         Spacer()
                         Image.appIcon(.chevronRight)
                             .foregroundColor(.appColor(.primaryBrand))
                             .accessibility(hidden: true)
-
                     }
                     .onTapGesture {
                         interactor?.didSelectLocation(location)
@@ -69,12 +67,12 @@ struct LocationsView: View, LocationsViewProtocol {
             interactor?.loadLocations()
         }
         .sheet(isPresented: $isPopupPresented) {
-            CustomLocationFactory.createHomeworkView()
+            CustomLocationFactory.createLocationView()
         }
     }
     
-    func displayLocations(_ homework: [Location]) {
-        viewState.state = .loaded(homework)
+    func displayLocations(_ location: [Location]) {
+        viewState.state = .loaded(location)
     }
     
     func displayError(_ error: any Error) {
