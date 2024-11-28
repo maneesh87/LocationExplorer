@@ -9,7 +9,7 @@ struct CustomLocationView: View, CustomLocationViewProtocol {
     var interactor: CustomLocationInteractorProtocol
     
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject private var viewState = CustomLocationViewState()
+    @ObservedObject var viewState = CustomLocationViewState()
     
     var body: some View {
         NavigationView {

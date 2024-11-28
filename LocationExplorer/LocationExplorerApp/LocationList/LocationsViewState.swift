@@ -1,7 +1,7 @@
 import Foundation
 
 class LocationsViewState: ObservableObject {
-    enum State {
+    enum State: Equatable {
         case loading
         case loaded([Location])
         case error(String)

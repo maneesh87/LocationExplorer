@@ -8,7 +8,7 @@ protocol LocationsViewProtocol {
 struct LocationsView: View, LocationsViewProtocol {
     var interactor: LocationsInteractorProtocol?
     
-    @ObservedObject private var viewState = LocationsViewState()
+    @ObservedObject var viewState = LocationsViewState()
     @State private var isPopupPresented: Bool = false
     
     var body: some View {
