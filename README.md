@@ -14,9 +14,9 @@ This project uses the VIP (View-Interactor-Presenter) architecture pattern. The 
 ## Modules
 #### 1. Network Layer
 
-The Network module is designed to handle all network-related operations in a structured and extendable manner. It includes components for making API requests, handling responses, and managing errors. The network module is created in such a way that it can be extended to use any networking framework.
+The [Network](./LocationExplorer/Modules/Network) module is designed to handle all network-related operations in a structured and extendable manner. It includes components for making API requests, handling responses, and managing errors. The network module is created in such a way that it can be extended to use any networking framework.
 
-#### Components
+##### Components
 ```APIManager```: The APIManager class is responsible for performing network requests. It uses a Dispatcher to execute the requests and a DecodableMapper to decode the responses.
 
 ```Dispatcher```: The Dispatcher protocol defines a method for executing network requests. The URLSessionDispatcher class is an implementation of this protocol using URLSession.
@@ -30,9 +30,15 @@ The Network module is designed to handle all network-related operations in a str
 ```DecodableMapper```: The DecodableMapper class is responsible for decoding JSON data into Swift objects.
 
 #### 2. DesignSystem
-The DesignSystem module provides a centralized way to manage the app's design elements, such as colors, fonts, icons, and spacing. This ensures consistency across the app and makes it easier to update the design.
+The [DesignSystem](./LocationExplorer/Modules/DesignSystem) module provides a centralized way to manage the app's design elements, such as colors, fonts, icons, and spacing. This ensures consistency across the app and makes it easier to update the design.
 
 ##### By using the Network and DesignSystem modules, the app maintains a clean and modular architecture, making it easier to manage and extend.
+
+## Accessibility
+The LocationExplorer project places a strong emphasis on accessibility to ensure that the app is usable by everyone, including those who rely on assistive technologies. Accessibility is implemented using custom view modifiers and extensions to make it easy to add accessibility features to SwiftUI views.
+
+```AccessibilityModifier```
+The [AccessibilityModifier](LocationExplorer/LocationExplorerApp/AccessibilityModifier.swift) struct is a custom view modifier that allows you to set accessibility properties on a view. It includes properties for the accessibility label, hint, value, and visibility.
 
 ## Code Testability
 The LocationExplorer project is designed with testability in mind, ensuring that each component can be independently tested. This is achieved through the use of protocols, dependency injection, and modular architecture.
@@ -47,3 +53,4 @@ The LocationExplorer project is designed with testability in mind, ensuring that
 ```Unit Tests```: The project includes unit tests for various components, such as Interactors, Presenters, and utility functions. These tests ensure that each component behaves as expected in isolation.
 
 By following these practices, the LocationExplorer project ensures high testability, making it easier to maintain and extend the codebase while ensuring reliability and correctness.
+
