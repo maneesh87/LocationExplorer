@@ -54,3 +54,8 @@ The LocationExplorer project is designed with testability in mind, ensuring that
 
 By following these practices, the LocationExplorer project ensures high testability, making it easier to maintain and extend the codebase while ensuring reliability and correctness.
 
+## Changes to Wikipedia app
+[Wikipedia App](https://github.com/maneesh87/wikipedia-ios)
+
+[PR to update Wikipedia app to support deeplinking of location coordinates](https://github.com/maneesh87/wikipedia-ios/pull/1/files)
+
