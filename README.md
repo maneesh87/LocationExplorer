@@ -6,7 +6,9 @@ The app is built using Swift and SwiftUI, and it follows VIP architecture.
 This project uses the VIP (View-Interactor-Presenter) architecture pattern. The VIP architecture helps in separating concerns and making the code more modular and testable.
 
 ```View```: Responsible for displaying the data and handling user interactions.
+
 ```Interactor```: Contains the business logic and handles data fetching/manipulation.
+
 ```Presenter```: Prepares data for the view and handles presentation logic.
 
 ## Modules
