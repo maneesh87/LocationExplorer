@@ -21,21 +21,28 @@ struct LocationsView: View, LocationsViewProtocol {
                     .font(.appFont(.headline))
                 
             case .loaded(let locations):
-                Text("Homework Locations")
+                Text("Locations")
                     .font(.appFont(.headline))
                     .foregroundColor(.appColor(.primaryBrand))
+                    .accessibility(hidden: true)
                 
                 List(locations, id: \.self) { location in
                     HStack {
                         VStack(alignment: .leading, spacing: CGFloat.spacing(.small)) {
                             Text(location.name ?? "Unknown")
                                 .font(.appFont(.headlineBold))
+                                .accessible(label: "Location", hint: "Tap to open wikipedia", value: location.name)
+
                             Text("Lat: \(location.lat), Long: \(location.long)")
                                 .font(.appFont(.subheadline))
+                                .accessibility(hidden: true)
+
                         }
                         Spacer()
                         Image.appIcon(.chevronRight)
                             .foregroundColor(.appColor(.primaryBrand))
+                            .accessibility(hidden: true)
+
                     }
                     .onTapGesture {
                         interactor?.didSelectLocation(location)
@@ -44,6 +51,7 @@ struct LocationsView: View, LocationsViewProtocol {
             case .error(let errorMessage):
                 Text("Error: \(errorMessage)")
                     .foregroundColor(.appColor(.textError))
+                    .accessible(label: "Error", value: errorMessage)
             }
             
             Button(action: {
@@ -52,6 +60,8 @@ struct LocationsView: View, LocationsViewProtocol {
                 Text("Enter Location")
                     .foregroundColor(.appColor(.primaryForeground))
                     .padding()
+                    .accessible(label: "Enter Location", hint: "Tap to enter coordinates")
+
             }
         }
         .onAppear {

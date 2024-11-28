@@ -16,13 +16,18 @@ struct CustomLocationView: View, CustomLocationViewProtocol {
             VStack(spacing: CGFloat.spacing(.large)) {
                 TextField("Latitude", text: $viewState.latitude)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .keyboardType(.numbersAndPunctuation)
+                    .accessible(label: "Latitude", hint: "Enter latitude value")
                 
                 TextField("Longitude", text: $viewState.longitude)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .keyboardType(.numbersAndPunctuation)
+                    .accessible(label: "Longitude", hint: "Enter longitude value")
                 
                 if let errorMessage = viewState.errorMessage {
                     Text(errorMessage)
                         .foregroundColor(.appColor(.textError))
+                        .accessible(label: "Error message", value: errorMessage)
                 }
                 
                 Button(action: {
@@ -36,6 +41,7 @@ struct CustomLocationView: View, CustomLocationViewProtocol {
                         .foregroundColor(.appColor(.primaryForeground))
                         .cornerRadius(8)
                 }
+                .accessible(label: "Submit button", hint: "Tap to open coordinates in wikipedia")
                 
                 Button(action: {
                     viewState.errorMessage = nil
@@ -48,6 +54,7 @@ struct CustomLocationView: View, CustomLocationViewProtocol {
                         .foregroundColor(.appColor(.primaryForeground))
                         .cornerRadius(.appCornerRadius)
                 }
+                .accessible(label: "Generate random coordinates button", hint: "Tap to generate random coordinates")
                 
                 Spacer()
             }
@@ -58,6 +65,7 @@ struct CustomLocationView: View, CustomLocationViewProtocol {
             }) {
                 Image.appIcon(.xmark)
                     .foregroundColor(.appColor(.primaryBrand))
+                    .accessible(label: "Close button", hint: "Tap to close the view")
             })
         }
         
